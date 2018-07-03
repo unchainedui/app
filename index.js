@@ -64,6 +64,21 @@ App.prototype = compose(
       return this;
     },
 
+    routes: function(routes) {
+      for (const route in routes) {
+        this.router.add(route, routes[route]);
+      }
+      return this;
+    },
+
+    start: function() {
+      this.router.start()
+    },
+
+    go: function(...args) {
+      this.router.go(...args);
+    },
+
     container: function(container) {
       if (typeof container === 'string') {
         const el = get(container);

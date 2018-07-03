@@ -14,8 +14,8 @@ import app from 'uc-app';
 
 app.init({ container: 'body' }, () => {
   // here is your app is ready
-  // probably somethnig like this:
-  app.router.start();
+  // this will start the router
+  app.start();
 });
 
 ```
@@ -44,6 +44,14 @@ The app will add following methods to your adapter:
 `app.router`
 
 For more info go to [uc-router](https://github.com/unchainedui/router)
+
+#### routes(routes)
+
+Adds all the `routes` to the router.
+
+#### go(url[, state])
+
+Navigates to the `url`. Alias to `router.go`.
 
 ### DOM
 
