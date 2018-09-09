@@ -9,6 +9,7 @@ import { localStorage, JSONStorage } from 'uc-storage'
 
 export const App = function() {
   this.events = {};
+  this.state = {};
   this.router = new Router((name, params) => {
     this.emit(`app.route.${name}`, params)
     this.emit('app.route', name, params)
@@ -37,9 +38,8 @@ App.prototype = compose(
 
       this.container(settings.container);
 
-
-      if (this._api) {
-        this._api.init(() => this.didInit(cb))
+      if (this.api) {
+        this.api.init(() => this.didInit(cb))
       } else {
         this.didInit(cb);
       }
@@ -54,13 +54,13 @@ App.prototype = compose(
       }, 0);
     },
 
-    api: function(api) {
-      this._api = api;
+    setAPI: function(api) {
+      this.api = api;
       this.call = (...args) => api.call(...args);
       this.host = () => api.host;
       api.log = (...args) => this.log(...args);
       api.emit = (...args) => this.emit(...args);
-      api.app(this);
+      api.setApp(this);
       return this;
     },
 

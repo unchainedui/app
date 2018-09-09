@@ -25,7 +25,7 @@ app.init({ container: 'body' }, () => {
 You can use any API adapter.
 
 ```js
-app.api(adapter);
+app.setAPI(adapter);
 ```
 
 The adapter should complain interface:
