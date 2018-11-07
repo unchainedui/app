@@ -64,6 +64,14 @@ App.prototype = compose(
       return this;
     },
 
+    isAuthenticated: function(...args) {
+      if (!this.api) {
+        return null;
+      }
+
+      return this.api.isAuthenticated(...args);
+    },
+
     routes: function(routes) {
       for (const route in routes) {
         this.router.add(route, routes[route]);
